@@ -30,10 +30,17 @@ $app->match('/', function() use ($app) {
         $birthday = retrieveBirthday($infos['birthday']);
 
         // Store user in database
-        $player = get_db()->load('players', $infos['id']);
-        if(!$player) $player = get_db()->dispense('players');
+        $player = get_db()->find('players', "uid=?",  array($infos['id']));
+        if(count($player) == 0)
+        {
+            $player = get_db()->dispense('players');
+        }
+        else
+        {
+            $player = $player[1];
+        }
 
-        $player->id = $infos['id'];
+        $player->uid = $infos['id'];
         $player->name = $infos['name'];
         $player->gender = $infos['gender'];
         $player->birthday = $infos['birthday'];

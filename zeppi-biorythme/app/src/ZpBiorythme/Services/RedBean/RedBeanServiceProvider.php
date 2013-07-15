@@ -22,7 +22,7 @@ class RedBeanServiceProvider implements ServiceProviderInterface
     {
         $app['db'] = $app->share(function() use ($app)
         {
-            return \RedBean_Facade::setup($app['db.options']['dsn'])->getRedBean();
+            return \RedBean_Facade::setup($app['db.dsn'])->getRedBean();
         });
     }
     

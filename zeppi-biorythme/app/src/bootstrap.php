@@ -9,17 +9,21 @@
 
 // Initialisation
 define('ROOT', realpath('../'));
-define('LOGS', ROOT . "/app/logs/app.log");
-define('CACHE', ROOT . "/app/cache");
-define('DATABASES', ROOT . "/app/data/profile.sqlite");
+
+define('APP', ROOT . DIRECTORY_SEPARATOR . "app");
+define('LOGS', APP . DIRECTORY_SEPARATOR . "logs" . DIRECTORY_SEPARATOR . "app.log");
+define('CACHE', APP . DIRECTORY_SEPARATOR . "cache" . DIRECTORY_SEPARATOR);
+define('DATABASES', APP . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "profile.sqlite");
+define('VIEWS', APP . DIRECTORY_SEPARATOR . "src" . DIRECTORY_SEPARATOR . "ZpBiorythme" . DIRECTORY_SEPARATOR . "Views" . DIRECTORY_SEPARATOR );
+
 
 // Load Silex
-$loader = require ROOT."/vendor/autoload.php";
+$loader = require ROOT. DIRECTORY_SEPARATOR . "vendor" . DIRECTORY_SEPARATOR . "autoload.php";
 $app = new Silex\Application();
 
 // Register autoloader
 $app['autoloader'] = $app->share(function()use($loader){return $loader;});
-$app['autoloader']->add('ZpBiorythme', ROOT . '/app/src');
+$app['autoloader']->add('ZpBiorythme', ROOT . DIRECTORY_SEPARATOR . 'app' .DIRECTORY_SEPARATOR  . 'src');
 
 /**
  * @return Composer\Autoload\ClassLoader
@@ -53,7 +57,7 @@ $app->register(
             'cache' => CACHE,
             'strict_variables' => true),
         'twig.path' =>
-        array(ROOT.'/app/src/ZpBiorythme/Views')
+        array(VIEWS)
     ));
 
 /**
@@ -79,9 +83,8 @@ use ZpBiorythme\Services\RedBean\RedBeanServiceProvider;
 $app->register(
     new RedBeanServiceProvider(),
     array(
-        'db.options' => array(
-            'dsn' => sprintf('sqlite:%s', DATABASES),
-        )));
+        'db.dsn' => sprintf('sqlite:%s', DATABASES)
+    ));
 
 /**
  * @return  \RedBean_OODB
