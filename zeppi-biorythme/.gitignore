@@ -1,7 +1,4 @@
 /.idea
 /vendor/*
-/app/cache/*
-/app/logs/*
-/app/data/*
 /composer.phar
 /composer.lock
