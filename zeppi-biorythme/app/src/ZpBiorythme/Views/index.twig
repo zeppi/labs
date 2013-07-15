@@ -1,0 +1,88 @@
+{% extends "layout.twig" %}
+
+{% block main %}
+<h1>Zeppi - Biorythme</h1>
+<div id="desctiption">
+<p>Les biorythmes sont une croyance qui affirme que depuis la naissance et jusqu’au moment de la mort, chaque être vivant subirait l'influence de trois cycles principaux : physique, émotionnel et intellectuel dont les phases sont dites positives ou négatives.</p>
+<p>La théorie, ne pouvant être vérifiée par l'approche scientifique, est assimilée à une pseudo-science.</p>
+<p>[source <a href="http://fr.wikipedia.org/wiki/Biorythme" target="wikipedia">Wikipedia</a>]</p>
+
+<h2>Oui et alors?</h2>
+<p>C'est ma première application. Elle est destinée à m'aider dans l'exploration des fonctionnalités Facebook</p>
+<p>Normalement on commence par écrire un "hello world", mais je me suis dit qu'un Biorythme c'était plus sympa pour toi utilisateur avide de savoir si demain est une bonne journée pour aller faire du sport ou s'il vaut mieux rester au lit :-)</p>
+<p>Pour les développeurs curieux, vous trouverez les sources sur mon dépôt <a href="https://github.com/zeppi/labs/zeppi-biorythme" target="github">Github</a></p>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        var emotionnel=[
+            {% for point in biorithme %}
+            ["{{ point.date }}", {{ point.emotionnel }}],
+            {% endfor %}
+        ];
+
+        var physique=[
+            {% for point in biorithme %}
+            ["{{ point.date }}", {{ point.physique }}],
+            {% endfor %}
+        ];
+
+        var intellectuel=[
+            {% for point in biorithme %}
+            ["{{ point.date }}", {{ point.intellectuel }}],
+            {% endfor %}
+        ];
+
+        var spirituel=[
+            {% for point in biorithme %}
+            ["{{ point.date }}", {{ point.spirituel }}],
+            {% endfor %}
+        ];
+
+        var intuitif=[
+            {% for point in biorithme %}
+            ["{{ point.date }}", {{ point.intuitif }}],
+            {% endfor %}
+        ];
+
+		{% set start_x = biorithme|first %}
+		{% set endpo_x = biorithme|last %}
+		
+        $.jqplot('chart_div', [emotionnel, physique, intellectuel, spirituel, intuitif], {
+            title:'Date de naissance {{ birthday }}',
+            axes:{
+                xaxis:{
+                    renderer:$.jqplot.DateAxisRenderer,
+                    tickOptions:{
+                        formatString:'%b&nbsp;%#d'
+                    },
+					min: "{{ start_x.date }}",
+					max: "{{ endpo_x.date }}"
+                },
+                yaxis:{
+                    tickOptions:{
+                        formatString:'%.2f \%'
+                    }
+                }
+            },
+            highlighter: {
+                show: true,
+                sizeAdjust: 7.0
+            },
+            cursor: {
+                show: false
+            },
+            legend: {
+                show: true,
+				labels: ["&nbsp;Emotionnel", "&nbsp;Physique", "&nbsp;Intellectuel", "&nbsp;Spirituel", "&nbsp;Intuitif"],
+				renderer: $.jqplot.EnhancedLegendRenderer,
+                location: 'ne',
+				placement: 'outside'
+            },
+			seriesColors: ["#ff3237", "#3c5a9a", "#00722d","#f7e8c5", "#eec5f7"]
+        });
+    });
+
+</script>
+<div id="chart_div"></div>
+{% endblock %}

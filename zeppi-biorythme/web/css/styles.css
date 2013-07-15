@@ -1,0 +1,31 @@
+.ym-wrapper {
+    min-width: 760px;
+    max-width: 80em;}
+
+.ym-wbox {
+    padding: 10px;
+    width:90%;
+    max-width: 760px;}
+
+#chart_div {
+    margin:10px 10px 10px 10px;
+    width:90%;
+    max-width: 760px;
+    height:460px;}
+
+body {
+    font:normal 80% "Trebuchet MS",Verdana,"Lucida Grande",Tahoma,Helvetica,Sans-Serif;}
+
+p {
+    text-align: justify;
+    font-size:1.2em;
+    line-height: 170%;
+    margin-bottom: 1.3em;}
+	
+#desctiption {
+	width: 100%;
+	height: 190px;
+	overflow: auto;
+	overflow-x: hidden;
+	background-color: #fdfdfd;
+	padding: 5px;}
