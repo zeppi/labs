@@ -3,6 +3,12 @@ Zeppi Labs
 
 Repository about tests and learning exercices
 
+## 26.07.2013
+
+### Zeppi-snippets
+
+Snippets and templates currently used
+
 ## 15.07.2013
 
 ### Zeppi-biorythme
