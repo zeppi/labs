@@ -1,4 +1,6 @@
 /.idea
+/zeppi-biorythme/app/logs/*
+/zeppi-biorythme/app/data/profile.sqlite
 /vendor/*
 /composer.phar
 /composer.lock
