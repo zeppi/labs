@@ -39,6 +39,7 @@ GetOptions(
 # if an option isn't specified, it isn't set in the hash so
 # we look for the ones we want and make certain they're there
 die pod2usage(1) if grep(!exists $opt{$_},@required);
+pod2usage( -verbose => 1 ) if $opt{'help'};
 
 #endregion ____________________________________________________________________
 
