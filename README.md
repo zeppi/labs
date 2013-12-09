@@ -11,11 +11,13 @@ Using Net-AS2, http://search.cpan.org/~swong/Net-AS2-0.01/lib/Net/AS2.pm
 
 For this lab, we needs two certificate (client, server). Is for the first level encryption
 
-  `openssl genrsa -out client.key 1024`
-  `openssl req -new -x509 -days 3650 -key client.key -out client.cert`
+    `openssl genrsa -out client.key 1024`
+  
+    `openssl req -new -x509 -days 3650 -key client.key -out client.cert`
  
-  `openssl genrsa -out server.key 1024`
-  `openssl -new -x509 -days 3650 -key server.key -out server.cert`
+    `openssl genrsa -out server.key 1024`
+  
+    `openssl -new -x509 -days 3650 -key server.key -out server.cert`
  
 ## 26.07.2013
 
