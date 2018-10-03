@@ -1,1 +1,1 @@
-Package { #name : #Zeppi-Snippets }
+Package { #name : #'Zeppi-Snippets' }
